@@ -1,6 +1,12 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
+    //id("kotlin-kapt")
+    //id("com.google.dagger.hilt.android")
+    //id ("com.google.dagger.hilt.android") version "2.51" apply false
+    //id("com.google.dagger.hilt.android") version "2.44" apply false
 }
 
 android {
@@ -67,6 +73,31 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    val nav_version = "2.7.7"
+
     implementation(libs.androidx.navigation.compose)
+
+
+    // Compose navigation
+    val nav_version = "2.4.2"
+    implementation ("androidx.navigation:navigation-compose:$nav_version")
+// Retrofit
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.okhttp)
+// Coroutines
+    implementation (libs.kotlinx.coroutines.core)
+    implementation (libs.kotlinx.coroutines.android)
+// Coroutine Lifecycle Scopes
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.lifecycle.runtime.ktx.v241)
+    implementation (libs.androidx.lifecycle.livedata.ktx)
+    implementation (libs.androidx.activity.ktx)
+    //implementation (libs.androidx.runtime.livedata.v100beta01)
+// Hilt
+    implementation (libs.hilt.android)
+    kapt (libs.hilt.compiler)
+    implementation (libs.androidx.hilt.navigation.compose)
+}
+kapt {
+    correctErrorTypes = true
 }
